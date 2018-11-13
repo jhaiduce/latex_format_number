@@ -49,7 +49,7 @@ def latex_format_number(n,uncert=None,exp_lower=1e-3,exp_upper=1e4,precision='au
     Format n using LaTeX syntax
 
     n: Numerical value to format
-    uncert: Uncertainty of n
+    uncert: Uncertainty of n. Can either be a number, a tuple of two numbers representing separate uncertainties in the positive and negative directions, or None.
     exp_lower: Numbers with absolute value smaller than this will be displayed using exponential (scientific) notation
     exp_upper: Numbers with absolute value larger than this will be displayed using exponential (scientific) notation
     show_uncert: Whether uncertainty should be displayed
