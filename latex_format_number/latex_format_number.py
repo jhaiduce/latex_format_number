@@ -3,12 +3,26 @@ from math import log10,floor
 import re
 
 def latex_format_int(n):
+    """
+    Format n as an integer, or display a '-' sign if n cannot be converted to an integer
+    """
+    
     try:
         return str(int(n))
     except:
         return '-'
 
 def guess_precision(n,uncert,uncert_precision=1):
+    """
+    Determine the appropriate number of significant figures for a number n, given its uncertainty.
+
+    n: Numerical value to format
+    uncert: Uncertainty of n
+    uncert_precision: Number of significant figures in the uncertainty of n.
+
+    Returns: Number of significant figures in n
+    """
+    
     # Base-10 exponent of the value
     if abs(n)>0:
         exp_val=int(floor(log10(abs(n))))
@@ -30,6 +44,23 @@ def guess_precision(n,uncert,uncert_precision=1):
     return p
 
 def latex_format_number(n,uncert=None,exp_lower=1e-3,exp_upper=1e4,precision='auto',uncert_precision=1,show_uncert=True,overline=False,extra_digits=0):
+
+    """
+    Format n using LaTeX syntax
+
+    n: Numerical value to format
+    uncert: Uncertainty of n
+    exp_lower: Numbers with absolute value smaller than this will be displayed using exponential (scientific) notation
+    exp_upper: Numbers with absolute value larger than this will be displayed using exponential (scientific) notation
+    show_uncert: Whether uncertainty should be displayed
+    precision: Number of significant figures in the number n, or 'auto'. If 'auto', the precision is determined using the guess_precision function.
+    uncert_precision: Number of significant figures in the uncertainty of n.
+    show_uncert: Whether the uncertainty should be included in the output.
+    overline: Whether to draw a bar over the last significant digit
+    extra_digits: How many extra digits to display after the last significant digit
+
+    Returns: A string representation of the number n using LaTeX math syntax
+    """
 
     try:
         int(n)
